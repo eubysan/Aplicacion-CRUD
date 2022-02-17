@@ -44,18 +44,20 @@ router.get('/api/user/:id', async (req, res) => {
 //FIN: vista MOSTRAR usuario por ID -------------------------------------------
 
 // INICIO: vista UPDATE usuario por ID ----------------------------------------
-router.get('/api/update/', function (request, response) {
+router.post('/update/', function (request, response) {
   return response.sendFile(views('user_update.html'));
 });
 
-router.put('/api/user/:id', async function (req, response) {
-  const users = req.body;
-  const user = await userController.updateOne(users);
+router.post('/api/userid/:id', async function (req, response) {
+  // const users = req.body;
+  const id = req.params.id;
+  const user = await userController.updateOne(id);
+  console.log(user);
   // Nos lleva luego a la página principal
   if (user.success) {
     return response.redirect('/');
   } else {
-    return response.redirect('/update/:id');
+    return response.redirect('/update/');
   }
 });
 //FIN: vista UPDATE usuario por ID -------------------------------------------

@@ -46,18 +46,6 @@ async function del(tableName, data) {
 
 async function update(tableName, data) {
   try {
-    await query(`UPDATE ${tableName} set (??=?)`, [
-      Object.keys(data),
-      Object.values(data),
-    ]);
-    return { data, success: true };
-  } catch (error) {
-    return { error, success: false };
-  }
-}
-
-async function update(tableName, data) {
-  try {
     await query(`UPDATE ${tableName} set ${[data]} WHERE id=?`);
     return data;
   } catch (error) {
