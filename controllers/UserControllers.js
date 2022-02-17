@@ -21,6 +21,12 @@ class UserController {
     const user = await database.del('user', id);
     return user;
   }
+
+  async updateOne(id) {
+    const user = await database.update('user', id);
+    console.log(user);
+    return user;
+  }
 }
 
 module.exports = UserController;
